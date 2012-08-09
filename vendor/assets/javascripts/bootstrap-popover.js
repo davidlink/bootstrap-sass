@@ -43,12 +43,7 @@
         , title = this.getTitle()
         , content = this.getContent()
 
-      if(this.options.escapeHtmlContent){
-        content = $('<div />').text(content).html()
-        content = content.replace(/&lt;/g, "<").replace(/&gt;/g, ">")
-      }
-
-      $tip.find('.popover-title')[this.isHTML(title) ? 'html' : 'text'](title)
+      $tip.find('.popover-title')[this.isHTML(title) && !this.options.escapeHtmlContent ? 'html' : 'text'](title)
       $tip.find('.popover-content > *')[this.isHTML(content) ? 'html' : 'text'](content)
 
       $tip.removeClass('fade top bottom left right in')

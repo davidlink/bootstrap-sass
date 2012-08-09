@@ -43,6 +43,11 @@
         , title = this.getTitle()
         , content = this.getContent()
 
+      if(this.options.escapeHtmlContent){
+        content = $('<div />').text(content).html()
+        content = content.replace(/&lt;/g, "<").replace(/&gt;/g, ">")
+      }
+
       $tip.find('.popover-title')[this.isHTML(title) ? 'html' : 'text'](title)
       $tip.find('.popover-content > *')[this.isHTML(content) ? 'html' : 'text'](content)
 
@@ -92,6 +97,7 @@
   $.fn.popover.defaults = $.extend({} , $.fn.tooltip.defaults, {
     placement: 'right'
   , content: ''
+  , escapeHtmlContent: false
   , template: '<div class="popover"><div class="arrow"></div><div class="popover-inner"><h3 class="popover-title"></h3><div class="popover-content"><p></p></div></div></div>'
   })
 

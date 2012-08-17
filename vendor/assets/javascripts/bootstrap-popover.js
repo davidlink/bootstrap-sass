@@ -46,6 +46,7 @@
       $tip.find('.popover-title')[this.isHTML(title) ? 'html' : 'text'](title)
       if (title == "") {
         $tip.find('.popover-title').hide()
+        $tip.find('.popover-content').addClass('no-title')
       }
       $tip.find('.popover-content > *')[this.isHTML(content) && !this.options.escapeHtmlContent ? 'html' : 'text'](content)
 
